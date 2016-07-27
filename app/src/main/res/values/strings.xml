@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">GO Navigator</string>
+    <string name="nearby">Nearby</string>
+    <string name="filters">Filters</string>
+    <string name="pokedex_load_fail">Pokédex failed to load.</string>
+    <string name="pokemon_filters_button">Pokémon (%1$d/%2$d)</string>
+    <string name="no_pokemon_nearby">There are no Pokémon nearby.</string>
+    <string name="filter_to_range">Show within range</string>
+    <string name="action_settings">Settings</string>
+    <string name="service_running">The gonav service is running.</string>
+    <string name="service_not_running">The gonav service is not running.</string>
+    <string name="service_degraded">There are currently some issues with the Pokémon GO API.</string>
+
+    <string name="title_activity_filters">Holy fuck. fuck off</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

@@ -1,0 +1,70 @@
+{
+  "pokemon": [
+    {
+      "id": 1,
+      "name": "Bulbasaur",
+      "region": "Kanto",
+      "type": ["Grass", "Poison"]
+    },
+    {
+      "id": 2,
+      "name": "Ivysaur",
+      "region": "Kanto",
+      "type": ["Grass", "Poison"]
+    },
+    {
+      "id": 3,
+      "name": "Venusaur",
+      "region": "Kanto",
+      "type": ["Grass", "Poison"]
+    },
+    {
+      "id": 4,
+      "name": "Charmander",
+      "region": "Kanto",
+      "type": ["Fire"]
+    },
+    {
+      "id": 5,
+      "name": "Charmeleon",
+      "region": "Kanto",
+      "type": ["Fire"]
+    },
+    {
+      "id": 6,
+      "name": "Charizard",
+      "region": "Kanto",
+      "type": ["Fire", "Flying"]
+    },
+    {
+      "id": 7,
+      "name": "Squirtle",
+      "region": "Kanto",
+      "type": ["Water"]
+    },
+    {
+      "id": 8,
+      "name": "Wartortle",
+      "region": "Kanto",
+      "type": ["Water"]
+    },
+    {
+      "id": 9,
+      "name": "Blastoise",
+      "region": "Kanto",
+      "type": ["Water"]
+    },
+    {
+      "id": 10,
+      "name": "Caterpie",
+      "region": "Kanto",
+      "type": ["Bug"]
+    },
+    {
+      "id": 11,
+      "name": "Metapod",
+      "region": "Kanto",
+      "type": ["Bug"]
+    }
+  ]
+}
