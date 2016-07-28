@@ -2,9 +2,6 @@ package fiskie.gonav.pokedex;
 
 import java.util.List;
 
-/**
- * Created by fiskie on 26/07/2016.
- */
 public class Pokedex {
     private List<PokedexEntry> pokemon;
 

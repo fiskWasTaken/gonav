@@ -10,11 +10,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
-/**
- * Created by fiskie on 26/07/2016.
- */
 public class Builder {
-    InputStream stream;
+    private InputStream stream;
 
     public Builder(InputStream stream) {
         this.stream = stream;

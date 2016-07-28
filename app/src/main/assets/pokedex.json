@@ -1,6 +1,12 @@
 {
   "pokemon": [
     {
+      "id": 0,
+      "name": "Missingno",
+      "region": "None",
+      "type": ["???"]
+    },
+    {
       "id": 1,
       "name": "Bulbasaur",
       "region": "Kanto",
@@ -65,6 +71,846 @@
       "name": "Metapod",
       "region": "Kanto",
       "type": ["Bug"]
+    },
+    {
+      "id": 12,
+      "name": "Butterfree",
+      "region": "Kanto",
+      "type": ["Bug", "Flying"]
+    },
+    {
+      "id": 13,
+      "name": "Weedle",
+      "region": "Kanto",
+      "type": ["Bug", "Poison"]
+    },
+    {
+      "id": 14,
+      "name": "Kakuna",
+      "region": "Kanto",
+      "type": ["Bug", "Poison"]
+    },
+    {
+      "id": 15,
+      "name": "Beedrill",
+      "region": "Kanto",
+      "type": ["Bug", "Poison"]
+    },
+    {
+      "id": 16,
+      "name": "Pidgey",
+      "region": "Kanto",
+      "type": ["Normal", "Flying"]
+    },
+    {
+      "id": 17,
+      "name": "Pidgeotto",
+      "region": "Kanto",
+      "type": ["Normal", "Flying"]
+    },
+    {
+      "id": 18,
+      "name": "Pidgeot",
+      "region": "Kanto",
+      "type": ["Normal", "Flying"]
+    },
+    {
+      "id": 19,
+      "name": "Rattata",
+      "region": "Kanto",
+      "type": ["Normal"]
+    },
+    {
+      "id": 20,
+      "name": "Raticate",
+      "region": "Kanto",
+      "type": ["Normal"]
+    },
+    {
+      "id": 21,
+      "name": "Spearow",
+      "region": "Kanto",
+      "type": ["Normal", "Flying"]
+    },
+    {
+      "id": 22,
+      "name": "Fearow",
+      "region": "Kanto",
+      "type": ["Normal", "Flying"]
+    },
+    {
+      "id": 23,
+      "name": "Ekans",
+      "region": "Kanto",
+      "type": ["Poison"]
+    },
+    {
+      "id": 24,
+      "name": "Arbok",
+      "region": "Kanto",
+      "type": ["Poison"]
+    },
+    {
+      "id": 25,
+      "name": "Pikachu",
+      "region": "Kanto",
+      "type": ["Electric"]
+    },
+    {
+      "id": 26,
+      "name": "Raichu",
+      "region": "Kanto",
+      "type": ["Electric"]
+    },
+    {
+      "id": 27,
+      "name": "Sandshrew",
+      "region": "Kanto",
+      "type": ["Ground"]
+    },
+    {
+      "id": 28,
+      "name": "Sandslash",
+      "region": "Kanto",
+      "type": ["Ground"]
+    },
+    {
+      "id": 29,
+      "name": "Nidoran♀",
+      "region": "Kanto",
+      "type": ["Poison"]
+    },
+    {
+      "id": 30,
+      "name": "Nidorina",
+      "region": "Kanto",
+      "type": ["Poison"]
+    },
+    {
+      "id": 31,
+      "name": "Nidoqueen",
+      "region": "Kanto",
+      "type": ["Poison", "Ground"]
+    },
+    {
+      "id": 32,
+      "name": "Nidoran♂",
+      "region": "Kanto",
+      "type": ["Poison"]
+    },
+    {
+      "id": 33,
+      "name": "Nidorino",
+      "region": "Kanto",
+      "type": ["Poison"]
+    },
+    {
+      "id": 34,
+      "name": "Nidoking",
+      "region": "Kanto",
+      "type": ["Poison", "Ground"]
+    },
+    {
+      "id": 35,
+      "name": "Clefairy",
+      "region": "Kanto",
+      "type": ["Fairy"]
+    },
+    {
+      "id": 36,
+      "name": "Clefable",
+      "region": "Kanto",
+      "type": ["Fairy"]
+    },
+    {
+      "id": 37,
+      "name": "Vulpix",
+      "region": "Kanto",
+      "type": ["Fire"]
+    },
+    {
+      "id": 38,
+      "name": "Ninetales",
+      "region": "Kanto",
+      "type": ["Fire"]
+    },
+    {
+      "id": 39,
+      "name": "Jigglypuff",
+      "region": "Kanto",
+      "type": ["Normal", "Fairy"]
+    },
+    {
+      "id": 40,
+      "name": "Wigglytuff",
+      "region": "Kanto",
+      "type": ["Normal", "Fairy"]
+    },
+    {
+      "id": 41,
+      "name": "Zubat",
+      "region": "Kanto",
+      "type": ["Poison", "Flying"]
+    },
+    {
+      "id": 42,
+      "name": "Golbat",
+      "region": "Kanto",
+      "type": ["Poison", "Flying"]
+    },
+    {
+      "id": 43,
+      "name": "Oddish",
+      "region": "Kanto",
+      "type": ["Grass", "Poison"]
+    },
+    {
+      "id": 44,
+      "name": "Gloom",
+      "region": "Kanto",
+      "type": ["Grass", "Poison"]
+    },
+    {
+      "id": 45,
+      "name": "Vileplume",
+      "region": "Kanto",
+      "type": ["Grass", "Poison"]
+    },
+    {
+      "id": 46,
+      "name": "Paras",
+      "region": "Kanto",
+      "type": ["Bug", "Grass"]
+    },
+    {
+      "id": 47,
+      "name": "Parasect",
+      "region": "Kanto",
+      "type": ["Bug", "Grass"]
+    },
+    {
+      "id": 48,
+      "name": "Venonat",
+      "region": "Kanto",
+      "type": ["Bug", "Poison"]
+    },
+    {
+      "id": 49,
+      "name": "Venomoth",
+      "region": "Kanto",
+      "type": ["Bug", "Poison"]
+    },
+    {
+      "id": 50,
+      "name": "Diglett",
+      "region": "Kanto",
+      "type": ["Ground"]
+    },
+    {
+      "id": 51,
+      "name": "Dugtrio",
+      "region": "Kanto",
+      "type": ["Ground"]
+    },
+    {
+      "id": 52,
+      "name": "Meowth",
+      "region": "Kanto",
+      "type": ["Normal"]
+    },
+    {
+      "id": 53,
+      "name": "Persian",
+      "region": "Kanto",
+      "type": ["Normal"]
+    },
+    {
+      "id": 54,
+      "name": "Psyduck",
+      "region": "Kanto",
+      "type": ["Water"]
+    },
+    {
+      "id": 55,
+      "name": "Golduck",
+      "region": "Kanto",
+      "type": ["Water"]
+    },
+    {
+      "id": 56,
+      "name": "Mankey",
+      "region": "Kanto",
+      "type": ["Fighting"]
+    },
+    {
+      "id": 57,
+      "name": "Primeape",
+      "region": "Kanto",
+      "type": ["Fighting"]
+    },
+    {
+      "id": 58,
+      "name": "Growlithe",
+      "region": "Kanto",
+      "type": ["Fire"]
+    },
+    {
+      "id": 59,
+      "name": "Arcanine",
+      "region": "Kanto",
+      "type": ["Fire"]
+    },
+    {
+      "id": 60,
+      "name": "Poliwag",
+      "region": "Kanto",
+      "type": ["Water"]
+    },
+    {
+      "id": 61,
+      "name": "Poliwhirl",
+      "region": "Kanto",
+      "type": ["Water"]
+    },
+    {
+      "id": 62,
+      "name": "Poliwrath",
+      "region": "Kanto",
+      "type": ["Water", "Fighting"]
+    },
+    {
+      "id": 63,
+      "name": "Abra",
+      "region": "Kanto",
+      "type": ["Psychic"]
+    },
+    {
+      "id": 64,
+      "name": "Kadabra",
+      "region": "Kanto",
+      "type": ["Psychic"]
+    },
+    {
+      "id": 65,
+      "name": "Alakazam",
+      "region": "Kanto",
+      "type": ["Psychic"]
+    },
+    {
+      "id": 66,
+      "name": "Machop",
+      "region": "Kanto",
+      "type": ["Fighting"]
+    },
+    {
+      "id": 67,
+      "name": "Machoke",
+      "region": "Kanto",
+      "type": ["Fighting"]
+    },
+    {
+      "id": 68,
+      "name": "Machamp",
+      "region": "Kanto",
+      "type": ["Fighting"]
+    },
+    {
+      "id": 69,
+      "name": "Bellsprout",
+      "region": "Kanto",
+      "type": ["Grass", "Poison"]
+    },
+    {
+      "id": 70,
+      "name": "Weepinbell",
+      "region": "Kanto",
+      "type": ["Grass", "Poison"]
+    },
+    {
+      "id": 71,
+      "name": "Victreebel",
+      "region": "Kanto",
+      "type": ["Grass", "Poison"]
+    },
+    {
+      "id": 72,
+      "name": "Tentacool",
+      "region": "Kanto",
+      "type": ["Water", "Poison"]
+    },
+    {
+      "id": 73,
+      "name": "Tentacruel",
+      "region": "Kanto",
+      "type": ["Water", "Poison"]
+    },
+    {
+      "id": 74,
+      "name": "Geodude",
+      "region": "Kanto",
+      "type": ["Rock", "Ground"]
+    },
+    {
+      "id": 75,
+      "name": "Graveler",
+      "region": "Kanto",
+      "type": ["Rock", "Ground"]
+    },
+    {
+      "id": 76,
+      "name": "Golem",
+      "region": "Kanto",
+      "type": ["Rock", "Ground"]
+    },
+    {
+      "id": 77,
+      "name": "Ponyta",
+      "region": "Kanto",
+      "type": ["Fire"]
+    },
+    {
+      "id": 78,
+      "name": "Rapidash",
+      "region": "Kanto",
+      "type": ["Fire"]
+    },
+    {
+      "id": 79,
+      "name": "Slowpoke",
+      "region": "Kanto",
+      "type": ["Water", "Psychic"]
+    },
+    {
+      "id": 80,
+      "name": "Slowbro",
+      "region": "Kanto",
+      "type": ["Water", "Psychic"]
+    },
+    {
+      "id": 81,
+      "name": "Magnemite",
+      "region": "Kanto",
+      "type": ["Electric", "Steel"]
+    },
+    {
+      "id": 82,
+      "name": "Magneton",
+      "region": "Kanto",
+      "type": ["Electric", "Steel"]
+    },
+    {
+      "id": 83,
+      "name": "Farfetch'd",
+      "region": "Kanto",
+      "type": ["Normal", "Flying"]
+    },
+    {
+      "id": 84,
+      "name": "Doduo",
+      "region": "Kanto",
+      "type": ["Normal", "Flying"]
+    },
+    {
+      "id": 85,
+      "name": "Dodrio",
+      "region": "Kanto",
+      "type": ["Normal", "Flying"]
+    },
+    {
+      "id": 86,
+      "name": "Seel",
+      "region": "Kanto",
+      "type": ["Water"]
+    },
+    {
+      "id": 87,
+      "name": "Dewgong",
+      "region": "Kanto",
+      "type": ["Water", "Ice"]
+    },
+    {
+      "id": 88,
+      "name": "Grimer",
+      "region": "Kanto",
+      "type": ["Poison"]
+    },
+    {
+      "id": 89,
+      "name": "Muk",
+      "region": "Kanto",
+      "type": ["Poison"]
+    },
+    {
+      "id": 90,
+      "name": "Shellder",
+      "region": "Kanto",
+      "type": ["Water"]
+    },
+    {
+      "id": 91,
+      "name": "Cloyster",
+      "region": "Kanto",
+      "type": ["Water", "Ice"]
+    },
+    {
+      "id": 92,
+      "name": "Gastly",
+      "region": "Kanto",
+      "type": ["Ghost", "Poison"]
+    },
+    {
+      "id": 93,
+      "name": "Haunter",
+      "region": "Kanto",
+      "type": ["Ghost", "Poison"]
+    },
+    {
+      "id": 94,
+      "name": "Gengar",
+      "region": "Kanto",
+      "type": ["Ghost", "Poison"]
+    },
+    {
+      "id": 95,
+      "name": "Onix",
+      "region": "Kanto",
+      "type": ["Rock", "Ground"]
+    },
+    {
+      "id": 96,
+      "name": "Drowzee",
+      "region": "Kanto",
+      "type": ["Psychic"]
+    },
+    {
+      "id": 97,
+      "name": "Hypno",
+      "region": "Kanto",
+      "type": ["Psychic"]
+    },
+    {
+      "id": 98,
+      "name": "Krabby",
+      "region": "Kanto",
+      "type": ["Water"]
+    },
+    {
+      "id": 99,
+      "name": "Kingler",
+      "region": "Kanto",
+      "type": ["Water"]
+    },
+    {
+      "id": 100,
+      "name": "Voltorb",
+      "region": "Kanto",
+      "type": ["Electric"]
+    },
+    {
+      "id": 101,
+      "name": "Electrode",
+      "region": "Kanto",
+      "type": ["Electric"]
+    },
+    {
+      "id": 102,
+      "name": "Exeggcute",
+      "region": "Kanto",
+      "type": ["Grass", "Psychic"]
+    },
+    {
+      "id": 103,
+      "name": "Exeggutor",
+      "region": "Kanto",
+      "type": ["Grass", "Psychic"]
+    },
+    {
+      "id": 104,
+      "name": "Cubone",
+      "region": "Kanto",
+      "type": ["Ground"]
+    },
+    {
+      "id": 105,
+      "name": "Marowak",
+      "region": "Kanto",
+      "type": ["Ground"]
+    },
+    {
+      "id": 106,
+      "name": "Hitmonlee",
+      "region": "Kanto",
+      "type": ["Fighting"]
+    },
+    {
+      "id": 107,
+      "name": "Hitmonchan",
+      "region": "Kanto",
+      "type": ["Fighting"]
+    },
+    {
+      "id": 108,
+      "name": "Lickitung",
+      "region": "Kanto",
+      "type": ["Normal"]
+    },
+    {
+      "id": 109,
+      "name": "Koffing",
+      "region": "Kanto",
+      "type": ["Poison"]
+    },
+    {
+      "id": 110,
+      "name": "Weezing",
+      "region": "Kanto",
+      "type": ["Poison"]
+    },
+    {
+      "id": 111,
+      "name": "Rhyhorn",
+      "region": "Kanto",
+      "type": ["Ground", "Rock"]
+    },
+    {
+      "id": 112,
+      "name": "Rhydon",
+      "region": "Kanto",
+      "type": ["Ground", "Rock"]
+    },
+    {
+      "id": 113,
+      "name": "Chansey",
+      "region": "Kanto",
+      "type": ["Normal"]
+    },
+    {
+      "id": 114,
+      "name": "Tangela",
+      "region": "Kanto",
+      "type": ["Grass"]
+    },
+    {
+      "id": 115,
+      "name": "Kangaskhan",
+      "region": "Kanto",
+      "type": ["Normal"]
+    },
+    {
+      "id": 116,
+      "name": "Horsea",
+      "region": "Kanto",
+      "type": ["Water"]
+    },
+    {
+      "id": 117,
+      "name": "Seadra",
+      "region": "Kanto",
+      "type": ["Water"]
+    },
+    {
+      "id": 118,
+      "name": "Goldeen",
+      "region": "Kanto",
+      "type": ["Water"]
+    },
+    {
+      "id": 119,
+      "name": "Seaking",
+      "region": "Kanto",
+      "type": ["Water"]
+    },
+    {
+      "id": 120,
+      "name": "Staryu",
+      "region": "Kanto",
+      "type": ["Water"]
+    },
+    {
+      "id": 121,
+      "name": "Starmie",
+      "region": "Kanto",
+      "type": ["Water", "Psychic"]
+    },
+    {
+      "id": 122,
+      "name": "Mr. Mime",
+      "region": "Kanto",
+      "type": ["Psychic", "Fairy"]
+    },
+    {
+      "id": 123,
+      "name": "Scyther",
+      "region": "Kanto",
+      "type": ["Bug", "Flying"]
+    },
+    {
+      "id": 124,
+      "name": "Jynx",
+      "region": "Kanto",
+      "type": ["Ice", "Psychic"]
+    },
+    {
+      "id": 125,
+      "name": "Electabuzz",
+      "region": "Kanto",
+      "type": ["Electric"]
+    },
+    {
+      "id": 126,
+      "name": "Magmar",
+      "region": "Kanto",
+      "type": ["Fire"]
+    },
+    {
+      "id": 127,
+      "name": "Pinsir",
+      "region": "Kanto",
+      "type": ["Bug"]
+    },
+    {
+      "id": 128,
+      "name": "Tauros",
+      "region": "Kanto",
+      "type": ["Normal"]
+    },
+    {
+      "id": 129,
+      "name": "Magikarp",
+      "region": "Kanto",
+      "type": ["Water"]
+    },
+    {
+      "id": 130,
+      "name": "Gyarados",
+      "region": "Kanto",
+      "type": ["Water", "Flying"]
+    },
+    {
+      "id": 131,
+      "name": "Lapras",
+      "region": "Kanto",
+      "type": ["Water", "Ice"]
+    },
+    {
+      "id": 132,
+      "name": "Ditto",
+      "region": "Kanto",
+      "type": ["Normal"]
+    },
+    {
+      "id": 133,
+      "name": "Eevee",
+      "region": "Kanto",
+      "type": ["Normal"]
+    },
+    {
+      "id": 134,
+      "name": "Vaporeon",
+      "region": "Kanto",
+      "type": ["Water"]
+    },
+    {
+      "id": 135,
+      "name": "Jolteon",
+      "region": "Kanto",
+      "type": ["Electric"]
+    },
+    {
+      "id": 136,
+      "name": "Flareon",
+      "region": "Kanto",
+      "type": ["Fire"]
+    },
+    {
+      "id": 137,
+      "name": "Porygon",
+      "region": "Kanto",
+      "type": ["Normal"]
+    },
+    {
+      "id": 138,
+      "name": "Omanyte",
+      "region": "Kanto",
+      "type": ["Rock", "Water"]
+    },
+    {
+      "id": 139,
+      "name": "Omastar",
+      "region": "Kanto",
+      "type": ["Rock", "Water"]
+    },
+    {
+      "id": 140,
+      "name": "Kabuto",
+      "region": "Kanto",
+      "type": ["Rock", "Water"]
+    },
+    {
+      "id": 141,
+      "name": "Kabutops",
+      "region": "Kanto",
+      "type": ["Rock", "Water"]
+    },
+    {
+      "id": 142,
+      "name": "Aerodactyl",
+      "region": "Kanto",
+      "type": ["Rock", "Flying"]
+    },
+    {
+      "id": 143,
+      "name": "Snorlax",
+      "region": "Kanto",
+      "type": ["Normal"]
+    },
+    {
+      "id": 144,
+      "name": "Articuno",
+      "region": "Kanto",
+      "type": ["Ice", "Flying"]
+    },
+    {
+      "id": 145,
+      "name": "Zapdos",
+      "region": "Kanto",
+      "type": ["Electric", "Flying"]
+    },
+    {
+      "id": 146,
+      "name": "Moltres",
+      "region": "Kanto",
+      "type": ["Fire", "Flying"]
+    },
+    {
+      "id": 147,
+      "name": "Dratini",
+      "region": "Kanto",
+      "type": ["Dragon"]
+    },
+    {
+      "id": 148,
+      "name": "Dragonair",
+      "region": "Kanto",
+      "type": ["Dragon"]
+    },
+    {
+      "id": 149,
+      "name": "Dragonite",
+      "region": "Kanto",
+      "type": ["Dragon", "Flying"]
+    },
+    {
+      "id": 150,
+      "name": "Mewtwo",
+      "region": "Kanto",
+      "type": ["Psychic"]
+    },
+    {
+      "id": 151,
+      "name": "Mew",
+      "region": "Kanto",
+      "type": ["Psychic"]
     }
   ]
 }

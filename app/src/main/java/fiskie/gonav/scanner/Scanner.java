@@ -1,58 +1,82 @@
 package fiskie.gonav.scanner;
 
-
-import android.content.Context;
-import android.location.Location;
-import android.location.LocationManager;
 import android.util.Log;
 
 import com.pokegoapi.api.PokemonGo;
-import com.pokegoapi.api.map.Map;
-import com.pokegoapi.api.map.pokemon.NearbyPokemon;
 import com.pokegoapi.exceptions.LoginFailedException;
 import com.pokegoapi.exceptions.RemoteServerException;
 
-import java.util.Collection;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
-import POGOProtos.Map.Pokemon.WildPokemonOuterClass;
-import fiskie.gonav.daemon.ICallback;
+import fiskie.gonav.scanner.strategies.IScanStrategy;
+import fiskie.gonav.scanner.strategies.WideStrategy;
 
-/**
- * Created by fiskie on 26/07/2016.
- */
 public class Scanner {
-    PokemonGo client;
-    LocationManager locationManager;
+    private PokemonGo pogo;
+    private LocationProvider locationProvider;
+    private IScanStrategy strategy;
+    private Map<Long, Encounter> encounters;
 
-    public Scanner(PokemonGo client, LocationManager locationManager) {
-        this.client = client;
-        this.locationManager = locationManager;
+    public Scanner(PokemonGo pogo, LocationProvider locationProvider) {
+        this.pogo = pogo;
+        this.locationProvider = locationProvider;
+        this.strategy = new WideStrategy(locationProvider, pogo);
+        encounters = new HashMap<>();
     }
 
-    public void scan() {
-        Log.i("gonavd", "Performing scan");
+    public List<Encounter> getEncounters() {
+        this.trim();
+        return new ArrayList<>(encounters.values());
+    }
 
-        Location location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+    /**
+     * Trim the encounter store to remove expired entries that do not need to be retained anymore
+     */
+    private void trim() {
+        long now = System.currentTimeMillis();
 
-        client.setLatitude(location.getLatitude());
-        client.setLongitude(location.getLongitude());
+        for (Iterator<Map.Entry<Long, Encounter>> it = encounters.entrySet().iterator(); it.hasNext(); ) {
+            Map.Entry<Long, Encounter> entry = it.next();
 
-        Log.d("gonavd", String.format("Client coordinates set for %f %f", client.getLatitude(), client.getLongitude()));
+            if (entry.getValue().getExpirationTimestamp() <= now) {
+                Log.i("scanner", String.format("Removing encounter %d as it has expired.", entry.getValue().getUid()));
+                it.remove();
+            }
+        }
+    }
+
+    public void scan(final EncounterCallback uniqueEncounterCallback) throws InterruptedException {
+        Log.d("scanner", "Performing scan");
+        this.trim();
 
         try {
-            Map map = client.getMap();
+            locationProvider.requestLocationUpdate();
+            strategy.doScan(new EncounterCallback() {
+                @Override
+                public void onEncounterReceived(Encounter encounter) {
+                    if (!encounters.containsKey(encounter.getUid())) {
+                        if (encounter.getExpirationTimestamp() < 0) {
+                            Log.w("scanner", "Found a Pokémon with an expiration timestamp < 0, ignoring.");
+                            return;
+                        }
 
-            Log.i("gonavd", "Nearby: " + map.getNearbyPokemon().size());
-
-            for (WildPokemonOuterClass.WildPokemon pkmn : map.getMapObjects().getWildPokemons()) {
-                Log.i("gonavd", String.format("Pokémon #%d at %f %f", pkmn.getPokemonData().getPokemonId().getNumber(), pkmn.getLatitude(), pkmn.getLongitude()));
-            }
+                        Log.i("scanner", String.format("Logging unseen Pokémon (encounter ID %d, #%d)", encounter.getUid(), encounter.getId()));
+                        // Add the pkmn to the global encounter list and a list of new encounters
+                        encounters.put(encounter.getUid(), encounter);
+                        uniqueEncounterCallback.onEncounterReceived(encounter);
+                    } else {
+                        Log.d("scanner", String.format("Already saw Pokémon (encounter ID %d, #%d)", encounter.getUid(), encounter.getId()));
+                    }
+                }
+            });
         } catch (LoginFailedException e) {
-            Log.e("gonavd", "login failed ex"); // todo
+            Log.e("scanner", "login failed ex"); // todo
         } catch (RemoteServerException e) {
-            Log.e("gonavd", "remote server ex"); // todo
+            Log.e("scanner", "remote server ex"); // todo
         }
     }
 }

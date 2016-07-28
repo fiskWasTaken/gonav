@@ -1,21 +1,27 @@
 package fiskie.gonav.pokedex;
 
+import android.text.TextUtils;
+
+import java.io.Serializable;
 import java.util.List;
 
-/**
- * Created by fiskie on 26/07/2016.
- */
-public class PokedexEntry {
+public class PokedexEntry implements Serializable {
     private int id;
     private String name;
     private String region;
     private List<String> type;
 
+    public static PokedexEntry missingno(int id) {
+        PokedexEntry missingno = new PokedexEntry();
+        missingno.setId(id);
+        return missingno;
+    }
+
     public int getId() {
         return id;
     }
 
-    public void setId(int id) {
+    private void setId(int id) {
         this.id = id;
     }
 
@@ -48,9 +54,11 @@ public class PokedexEntry {
         return String.format("[Pokémon: #%s %s]", this.getId(), this.getName());
     }
 
-    public static PokedexEntry missingno(int id) {
-        PokedexEntry missingno = new PokedexEntry();
-        missingno.setId(id);
-        return missingno;
+    public String getSubString() {
+        return String.format("%s, %s", this.region, TextUtils.join("/", this.type));
+    }
+
+    public String getDexString() {
+        return String.format("#%d %s", this.id, this.name);
     }
 }
