@@ -20,7 +20,7 @@ public class FirstRunActivity extends AppCompatActivity {
     }
 
     public void launchGoogleSSOIntent(View v) {
-        startActivity(new Intent(this, SetupGoogleActivity.class));
+//        startActivity(new Intent(this, SetupGoogleActivity.class));
     }
 
     public void launchPTCSSOIntent(View v) {

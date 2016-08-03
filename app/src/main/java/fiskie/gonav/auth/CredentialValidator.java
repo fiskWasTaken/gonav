@@ -22,7 +22,6 @@ public class CredentialValidator {
         OkHttpClient httpClient = new OkHttpClient();
         PokemonGo pokemonGo = new PokemonGo(provider, httpClient);
 
-        Log.d("gonav", "PoGo username: " + pokemonGo.getPlayerProfile().getUsername());
-        Log.d("gonav", "PoGo creation time: " + pokemonGo.getPlayerProfile().getCreationTime());
+        Log.d("gonav", "PoGo username: " + pokemonGo.getPlayerProfile().getPlayerData().getUsername());
     }
 }

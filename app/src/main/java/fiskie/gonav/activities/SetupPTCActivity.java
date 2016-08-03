@@ -34,10 +34,6 @@ public class SetupPTCActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
     }
 
-    public void launchGoogleSSOIntent(View v) {
-        startActivity(new Intent(this, SetupGoogleActivity.class));
-    }
-
     public void launchPTCAccountCreationIntent(View v) {
         Intent intent = new Intent(Intent.ACTION_VIEW);
         intent.setData(Uri.parse("https://club.pokemon.com/us/pokemon-trainer-club/sign-up/"));
