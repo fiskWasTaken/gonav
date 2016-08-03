@@ -17,6 +17,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import fiskie.gonav.R;
@@ -28,7 +29,7 @@ import fiskie.gonav.scanner.CoordinatesComparison;
 import fiskie.gonav.scanner.Encounter;
 import fiskie.gonav.scanner.LocationProvider;
 
-public class EncounterNotificationManager {
+class EncounterNotificationManager {
     private static final String NOTIFICATION_DELETED_ACTION = "NOTIFICATION_DELETED";
     private Map<Integer, EncounterNotification> encounterNotifications;
     private Pokedex pokedex;
@@ -39,7 +40,7 @@ public class EncounterNotificationManager {
     private Thread thread;
     private NotificationRemovedListener removedListener;
 
-    public IntentService getService() {
+    private IntentService getService() {
         return service;
     }
 
@@ -83,14 +84,18 @@ public class EncounterNotificationManager {
         return (int) (encounter.getUid() % Integer.MAX_VALUE);
     }
 
-    public void updateDisplay() {
+    private void updateDisplay() {
         trim();
 
-        for (EncounterNotification encounter : encounterNotifications.values())
-            buildNotification(encounter);
+        if (encounterNotifications.size() > 0) {
+            locationProvider.requestLocationUpdate();
+
+            for (EncounterNotification encounter : encounterNotifications.values())
+                buildNotification(encounter);
+        }
     }
 
-    public void trim() {
+    private void trim() {
         List<Integer> ids = new ArrayList<>();
 
         for (EncounterNotification encounterNotification : encounterNotifications.values()) {
@@ -107,11 +112,11 @@ public class EncounterNotificationManager {
             encounterNotifications.remove(id);
     }
 
-    public LocationProvider getLocationProvider() {
+    private LocationProvider getLocationProvider() {
         return locationProvider;
     }
 
-    public void buildNotification(EncounterNotification encounterNotification) {
+    private void buildNotification(EncounterNotification encounterNotification) {
         Encounter encounter = encounterNotification.getEncounter();
 
         if (!filters.getFilters().get(encounter.getId()).isEnabled()) {
@@ -193,7 +198,7 @@ public class EncounterNotificationManager {
             Coordinates b = new Coordinates(encounter.getLatitude(), encounter.getLongitude());
             CoordinatesComparison comparison = new CoordinatesComparison(a, b);
 
-            String timeText = new SimpleDateFormat("mm:ss").format(encounter.getExpirationTimestamp() - System.currentTimeMillis());
+            String timeText = new SimpleDateFormat("mm:ss", Locale.US).format(encounter.getExpirationTimestamp() - System.currentTimeMillis());
             return String.format("%.0fm %s, %s remaining", comparison.getDistanceInMetres(), comparison.getCompassPoint(), timeText);
         }
 
@@ -204,7 +209,7 @@ public class EncounterNotificationManager {
         }
     }
 
-    public class ScanThread extends Thread {
+    private class ScanThread extends Thread {
         @Override
         public void run() {
             try {

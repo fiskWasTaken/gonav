@@ -15,11 +15,17 @@ import android.util.Log;
 public class LocationProvider {
     private LocationManager locationManager;
     private Location lastLocation;
-    private String provider = LocationManager.GPS_PROVIDER;
+
+    private String provider;
 
     public LocationProvider(LocationManager locationManager) {
+        this(locationManager, LocationManager.PASSIVE_PROVIDER);
+    }
+
+    public LocationProvider(LocationManager locationManager, String provider) {
         this.locationManager = locationManager;
         this.lastLocation = locationManager.getLastKnownLocation(provider);
+        this.provider = provider;
     }
 
     public Location getLastLocation() {
@@ -58,8 +64,6 @@ public class LocationProvider {
     private void doRequestLocation(final LocationListener listener) {
         long now = SystemClock.elapsedRealtimeNanos();
         long lastUpdate = 0;
-
-        // todo: fall back to "best" location, GPS keeps failing to respond sometimes...
 
         if (lastLocation != null)
             lastUpdate = lastLocation.getElapsedRealtimeNanos();

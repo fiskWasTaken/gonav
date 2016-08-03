@@ -110,14 +110,14 @@ public class FiltersActivity extends AppCompatActivity {
             ((TextView) convertView.findViewById(R.id.pokemonName)).setText(entry.getDexString());
             ((TextView) convertView.findViewById(R.id.pokemonType)).setText(entry.getSubString());
             ((Switch) convertView.findViewById(R.id.isEnabled)).setChecked(filterable.isEnabled());
-            ((Switch) convertView.findViewById(R.id.isEnabled)).setTag(filterable);
+            convertView.findViewById(R.id.isEnabled).setTag(filterable);
 
             // Return the completed view to render on screen
             return convertView;
         }
     }
 
-    public class FilterSort implements Comparator<PokemonFilter> {
+    private class FilterSort implements Comparator<PokemonFilter> {
         @Override
         public int compare(PokemonFilter a, PokemonFilter b) {
             return a.getId() < b.getId() ? -1 : 1;

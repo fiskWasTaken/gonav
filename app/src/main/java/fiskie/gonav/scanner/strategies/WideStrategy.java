@@ -11,6 +11,8 @@ import com.pokegoapi.exceptions.RemoteServerException;
 import java.util.ArrayList;
 import java.util.List;
 
+import fiskie.gonav.scanner.Coordinates;
+import fiskie.gonav.scanner.CoordinatesComparison;
 import fiskie.gonav.scanner.Encounter;
 import fiskie.gonav.scanner.EncounterCallback;
 import fiskie.gonav.scanner.LocationProvider;
@@ -20,18 +22,44 @@ import fiskie.gonav.scanner.SpiralGenerator;
  * WideStrategy scans a 5x5 grid around the player, in a spiral pattern beginning from the middle.
  */
 public class WideStrategy implements IScanStrategy {
-    // This is what the game client is using right now, mimic that.
-    private static int PING_RATE = 10000;
-
-    // Ensures a scan of a 5x5 grid around the player.
-    private static int SCAN_RADIUS = 2;
 
     private LocationProvider locationProvider;
     private PokemonGo pokemonGo;
+    Location previousLocation;
 
     public WideStrategy(LocationProvider locationProvider, PokemonGo pokemonGo) {
         this.locationProvider = locationProvider;
         this.pokemonGo = pokemonGo;
+    }
+
+    /**
+     * Strategy: look around the location the player is *going* to be, as opposed to
+     * possibly out-of-date "current" location figures
+     *
+     * This function just does a simple extrapolation assuming
+     * that the player's speed and direction is constant.
+     *
+     * It's not going to be very accurate -- gps bounce et al will screw it as well -- but
+     * it should be better than getting scan results from just behind.
+     *
+     * @return Coordinates
+     */
+    public Coordinates getForwardLocation() {
+        Location location = locationProvider.getLastLocation();
+        Coordinates projection;
+
+        if (previousLocation == null) {
+            projection = new Coordinates(location);
+        } else {
+            Coordinates prev = new Coordinates(previousLocation);
+            Coordinates curr = new Coordinates(location);
+            Coordinates relative = new CoordinatesComparison(prev, curr).getRelativeCoordinates();
+            projection = new Coordinates(relative.getLatitude() * 2 + curr.getLatitude(), relative.getLongitude() * 2 + curr.getLongitude());
+        }
+
+        previousLocation = location;
+
+        return projection;
     }
 
     @Override
@@ -54,6 +82,7 @@ public class WideStrategy implements IScanStrategy {
 
         // does the coordinates generation in a spiral beginning from the middle.
         // have to put everything into a list because we can't do proper exception handling from a callback without changing the interface.
+        int SCAN_RADIUS = 2;
         new SpiralGenerator().generate(SCAN_RADIUS, new SpiralGenerator.SpiralGeneratorCallback() {
             @Override
             public void yield(int x, int y) {
@@ -63,11 +92,12 @@ public class WideStrategy implements IScanStrategy {
 
         // Want to try and keep up with the player
         for (int[] offset : offsets) {
-            Location location = locationProvider.getLastLocation();
-            double lat = location.getLatitude() + gap * offset[1];
-            double lon = location.getLongitude() + gap * offset[0];
+            Coordinates forward = getForwardLocation();
+            double lat = forward.getLatitude() + gap * offset[1];
+            double lon = forward.getLongitude() + gap * offset[0];
 
             scanAt(callback, lat, lon);
+            int PING_RATE = 10000;
             Thread.sleep(PING_RATE);
         }
     }

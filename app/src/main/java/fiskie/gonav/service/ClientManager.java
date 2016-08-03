@@ -10,9 +10,9 @@ import com.pokegoapi.exceptions.RemoteServerException;
 import fiskie.gonav.auth.PoGoClientContext;
 import okhttp3.OkHttpClient;
 
-public class ClientManager {
+class ClientManager {
     PokemonGo pokemonGo;
-    PoGoClientContext context;
+    private PoGoClientContext context;
 
     public ClientManager(PoGoClientContext context) {
         this.context = context;

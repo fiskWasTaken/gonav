@@ -46,8 +46,6 @@ import fiskie.gonav.service.ReturnIntentType;
 
 public class MainActivity extends AppCompatActivity {
     private FloatingActionButton fab;
-    private TextView serviceState;
-    private AppSettings settings;
     private EServiceState currentState;
     private List<Encounter> encounterList;
     private Pokedex pokedex;
@@ -56,7 +54,6 @@ public class MainActivity extends AppCompatActivity {
     private Handler handler;
     private Runnable updateEncounterList;
     private Runnable updateLocation;
-    private RecyclerView recyclerView;
 
     @Override
     protected void onResume() {
@@ -94,9 +91,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         try {
             requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.INTERNET}, 1337);
-        } catch (NoSuchMethodError e) {}
+        } catch (NoSuchMethodError ignored) {}
 
-        settings = new AppSettings(getSharedPreferences("gonav", MODE_PRIVATE), getAssets());
+        AppSettings settings = new AppSettings(getSharedPreferences("gonav", MODE_PRIVATE), getAssets());
         pokedex = settings.getPokedex();
         locationProvider = new LocationProvider((LocationManager) getSystemService(Context.LOCATION_SERVICE));
         encounterList = new ArrayList<>();
@@ -110,7 +107,7 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         fab = (FloatingActionButton) findViewById(R.id.fab);
-        serviceState = (TextView) findViewById(R.id.daemonStatus);
+        TextView serviceState = (TextView) findViewById(R.id.daemonStatus);
 
         fab.setOnClickListener(new FloatingActionButton.OnClickListener() {
             @Override
@@ -133,7 +130,7 @@ public class MainActivity extends AppCompatActivity {
 
         encounterAdapter = new EncounterAdapter(encounterList);
 
-        recyclerView = (RecyclerView) findViewById(R.id.encounterList);
+        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.encounterList);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(encounterAdapter);

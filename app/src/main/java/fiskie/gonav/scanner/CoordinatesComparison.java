@@ -9,7 +9,7 @@ public class CoordinatesComparison {
         this.to = to;
     }
 
-    private Coordinates getRelativeCoordinates() {
+    public Coordinates getRelativeCoordinates() {
         return new Coordinates(to.getLatitude() - from.getLatitude(), to.getLongitude() - from.getLongitude());
     }
 

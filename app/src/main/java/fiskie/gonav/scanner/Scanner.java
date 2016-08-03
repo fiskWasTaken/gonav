@@ -16,13 +16,12 @@ import fiskie.gonav.scanner.strategies.IScanStrategy;
 import fiskie.gonav.scanner.strategies.WideStrategy;
 
 public class Scanner {
-    private PokemonGo pogo;
     private LocationProvider locationProvider;
     private IScanStrategy strategy;
     private Map<Long, Encounter> encounters;
 
     public Scanner(PokemonGo pogo, LocationProvider locationProvider) {
-        this.pogo = pogo;
+        PokemonGo pogo1 = pogo;
         this.locationProvider = locationProvider;
         this.strategy = new WideStrategy(locationProvider, pogo);
         encounters = new HashMap<>();

@@ -44,7 +44,7 @@ public class BackgroundService extends IntentService {
         new ClientManager(context).prepare(new ClientManager.ClientManagerCallback() {
             @Override
             public void onStatusChange(EServiceState serviceState, String overrideMessage) {
-                Log.i("gonavd", String.format("Client manager message: " + serviceState));
+                Log.i("gonavd", "Client manager message: " + serviceState);
                 updateServiceState(serviceState, overrideMessage);
             }
 
@@ -85,7 +85,7 @@ public class BackgroundService extends IntentService {
         notificationManager = new EncounterNotificationManager(this, locationProvider, settings.getPokedex(), settings.getPokemonFilters());
     }
 
-    public void startScanning() {
+    private void startScanning() {
         // Dealing with Android <24 where illegal thread states seem to be a thing
         try {
             scanThread.start();
@@ -199,7 +199,7 @@ public class BackgroundService extends IntentService {
         return super.onUnbind(intent);
     }
 
-    void performScan() throws InterruptedException {
+    private void performScan() throws InterruptedException {
         // todo: probably move the auto scanner state into a different enum, because it's now mixed in with network state and causing dumb cases like this one
         if (scanner != null && (serviceState == EServiceState.AVAILABLE || serviceState == EServiceState.ACTIVE)) {
             scanner.scan(listener);
