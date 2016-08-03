@@ -7,6 +7,7 @@ android {
     defaultConfig {
         applicationId "fiskie.gonav"
         minSdkVersion 21
+        multiDexEnabled true
         targetSdkVersion 21
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         versionCode 1
