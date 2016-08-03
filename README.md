@@ -1,12 +1,7 @@
-# gonav - Pokémon Go Navigator for Trackers
+# gonav - GO Navigator
 
-This is an assistant app for Pokémon GO players who want track Pokémon in the nearby area in a fairly enjoyable way.
-
-I never liked the concept of map-based scanners - although this app does contain this functionality (accessible by tapping any of the 
-
-This is an assistant for Pokémon GO designed for veteran players who want to get a bit more enjoyment out of the game.
-The core principle is to encourage you, the player, to go out and explore a little further than PoGo hints you to.
-As such, it delivers notifications on Pokémon spawns in the surrounding area without needing to keep the game constantly running in the foreground.
+This is an Android app for Pokémon GO players who want to track Pokémon in a fairly enjoyable way.
+By watching your nearby area, gonav keeps you updated with live compass/distance metrics via the Android notifications API.
 
 ## Features
 
@@ -23,7 +18,7 @@ As such, it delivers notifications on Pokémon spawns in the surrounding area wi
 
 ## Get the APK
 
-F-Droid link goes here
+F-Droid link goes here.
  
 ## Known issues
 
@@ -36,7 +31,10 @@ F-Droid link goes here
  
 Pull requests, etc. Please do not directly submit feature PRs; we want to avoid bloating the application and adding in features not related to the core functionality.
 
-NB: There are no unit tests. I wanted to set up some instrumental test cases first thing, but I couldn't figure out how to get it working. If someone can figure that out so we can keep this automatically tested to a degree, that would be nice.
+### Wanted
+
+* Android Wear support -- anyone got a Smartwatch?
+* There are no unit tests. I wanted to set up some instrumental test cases first thing, but I couldn't figure out how to get it working. If someone can figure that out so we can keep this automatically tested to a degree, that would be nice.
 
 ## License
 
