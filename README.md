@@ -34,6 +34,7 @@ Pull requests, etc. Please do not directly submit feature PRs; we want to avoid 
 ### Wanted
 
 * Android Wear support -- anyone got a Smartwatch?
+* Upgrading of the PokeGo-API bindings -- we're using an old version to work around a problem with includes that would only work with Java 8...
 * There are no unit tests. I wanted to set up some instrumental test cases first thing, but I couldn't figure out how to get it working. If someone can figure that out so we can keep this automatically tested to a degree, that would be nice.
 
 ## License
