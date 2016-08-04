@@ -73,16 +73,15 @@ public class WideStrategy implements IScanStrategy {
 
         pokemonGo.setAltitude(lastLocation.getAltitude());
 
-        // 70 metres is the radius of each catchable scan
+        // 35 metres is the radius of each catchable scan
         // Multiply by 2 for circumference and divide by 111111 for an accurate lat/long offset
-        // todo: may need changing for one of the lat/long values?
-        final double gap = 70 * 2 / 111111.;
+        final double circumference = 35 * 2 / 111111.;
 
         final List<int[]> offsets = new ArrayList<>();
 
         // does the coordinates generation in a spiral beginning from the middle.
         // have to put everything into a list because we can't do proper exception handling from a callback without changing the interface.
-        int SCAN_RADIUS = 2;
+        int SCAN_RADIUS = 3;
         new SpiralGenerator().generate(SCAN_RADIUS, new SpiralGenerator.SpiralGeneratorCallback() {
             @Override
             public void yield(int x, int y) {
@@ -93,8 +92,8 @@ public class WideStrategy implements IScanStrategy {
         // Want to try and keep up with the player
         for (int[] offset : offsets) {
             Coordinates forward = getForwardLocation();
-            double lat = forward.getLatitude() + gap * offset[1];
-            double lon = forward.getLongitude() + gap * offset[0];
+            double lat = forward.getLatitude() + circumference * offset[1];
+            double lon = forward.getLongitude() + circumference * offset[0];
 
             scanAt(callback, lat, lon);
             int PING_RATE = 10000;
