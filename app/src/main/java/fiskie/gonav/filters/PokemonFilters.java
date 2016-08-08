@@ -27,4 +27,18 @@ public class PokemonFilters {
             }
         }
     }
+
+    /**
+     * Should be used over getFilters().get().isEnabled()
+     * as it handles the filters not being populated
+     * @param id
+     * @return pokemon is enabled
+     */
+    public boolean isEnabled(int id) {
+        try {
+            return this.filters.get(id).isEnabled();
+        } catch (NullPointerException e) {
+            return false;
+        }
+    }
 }

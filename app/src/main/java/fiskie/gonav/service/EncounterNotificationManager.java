@@ -119,7 +119,7 @@ class EncounterNotificationManager {
     private void buildNotification(EncounterNotification encounterNotification) {
         Encounter encounter = encounterNotification.getEncounter();
 
-        if (!filters.getFilters().get(encounter.getId()).isEnabled()) {
+        if (!filters.isEnabled(encounter.getId())) {
             // Not creating notification for filtered pokemon
             return;
         }
