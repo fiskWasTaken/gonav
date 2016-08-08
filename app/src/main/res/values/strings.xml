@@ -21,4 +21,6 @@
     <string name="unknown_service_state">Unknown service state</string>
     <string name="first_run_setup">First-run setup</string>
     <string name="first_run_setup_desc">You are required to authenticate via PTC or Google to use this app. You do not need to use the same credentials you use for Pokemon GO.</string>
+    <string name="accept_tos">Accept ToS</string>
+    <string name="accept_tos_desc">If you are unable to find any Pokémon, you may have not accepted the ToS yet.</string>
 </resources>

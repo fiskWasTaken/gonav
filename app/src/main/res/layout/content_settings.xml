@@ -17,20 +17,35 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="@string/reset_authentication_credentials"
-        android:id="@+id/textView14" />
+        android:text="@string/reset_authentication_credentials"  />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="@string/reset_authentication_credentials_desc"
-        android:id="@+id/textView" />
+        android:text="@string/reset_authentication_credentials_desc" />
 
     <Button
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="@string/reset_authentication_credentials"
-        android:id="@+id/button12"
         android:onClick="resetAuthenticationCredentials" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/accept_tos" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="@string/accept_tos_desc"  />
+
+    <Button
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/accept_tos"
+        android:onClick="acceptToS" />
 </LinearLayout>

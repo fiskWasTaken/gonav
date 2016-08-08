@@ -6,7 +6,11 @@ import com.pokegoapi.api.PokemonGo;
 import com.pokegoapi.auth.CredentialProvider;
 import com.pokegoapi.exceptions.LoginFailedException;
 import com.pokegoapi.exceptions.RemoteServerException;
+import com.pokegoapi.main.ServerRequest;
 
+import POGOProtos.Enums.TutorialStateOuterClass;
+import POGOProtos.Networking.Requests.Messages.MarkTutorialCompleteMessageOuterClass;
+import POGOProtos.Networking.Requests.RequestTypeOuterClass;
 import okhttp3.OkHttpClient;
 
 public class CredentialValidator {
@@ -23,5 +27,8 @@ public class CredentialValidator {
         PokemonGo pokemonGo = new PokemonGo(provider, httpClient);
 
         Log.d("gonav", "PoGo username: " + pokemonGo.getPlayerProfile().getPlayerData().getUsername());
+
+        Log.i("gonav", "Attempting to accept ToS");
+        new ToSAccepter(pokemonGo).accept();
     }
 }

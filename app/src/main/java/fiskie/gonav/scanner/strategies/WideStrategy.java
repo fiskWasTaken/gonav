@@ -5,6 +5,7 @@ import android.util.Log;
 
 import com.pokegoapi.api.PokemonGo;
 import com.pokegoapi.api.map.pokemon.CatchablePokemon;
+import com.pokegoapi.exceptions.AsyncPokemonGoException;
 import com.pokegoapi.exceptions.LoginFailedException;
 import com.pokegoapi.exceptions.RemoteServerException;
 
@@ -114,9 +115,13 @@ public class WideStrategy implements IScanStrategy {
         Log.d("scanner", String.format("Scanning (%f, %f)", pokemonGo.getLatitude(), pokemonGo.getLongitude()));
 
         // track all wild pokemon in this area
-        for (CatchablePokemon pkmn : pokemonGo.getMap().getCatchablePokemon()) {
-            Log.d("scanner", "Found " + pkmn.toString() + " in scan");
-            callback.onEncounterReceived(new Encounter(pkmn));
+        try {
+            for (CatchablePokemon pkmn : pokemonGo.getMap().getCatchablePokemon()) {
+                Log.d("scanner", "Found " + pkmn.toString() + " in scan");
+                callback.onEncounterReceived(new Encounter(pkmn));
+            }
+        } catch (AsyncPokemonGoException ignored) {
+            // Can occur if scanner is stopped during a scan
         }
     }
 }

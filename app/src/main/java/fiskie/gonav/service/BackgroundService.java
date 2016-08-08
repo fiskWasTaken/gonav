@@ -11,7 +11,11 @@ import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 
 import com.pokegoapi.api.PokemonGo;
+import com.pokegoapi.main.ServerRequest;
 
+import POGOProtos.Enums.TutorialStateOuterClass;
+import POGOProtos.Networking.Requests.Messages.MarkTutorialCompleteMessageOuterClass;
+import POGOProtos.Networking.Requests.RequestTypeOuterClass;
 import fiskie.gonav.AppSettings;
 import fiskie.gonav.auth.PoGoClientContext;
 import fiskie.gonav.scanner.Encounter;
