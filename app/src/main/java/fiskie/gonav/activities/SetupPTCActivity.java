@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.pokegoapi.api.PokemonGo;
 import com.pokegoapi.auth.PtcCredentialProvider;
 import com.pokegoapi.exceptions.LoginFailedException;
 import com.pokegoapi.exceptions.RemoteServerException;
@@ -20,6 +21,8 @@ import fiskie.gonav.AppSettings;
 import fiskie.gonav.R;
 import fiskie.gonav.auth.CredentialValidator;
 import fiskie.gonav.auth.PTCCredentialsPair;
+import fiskie.gonav.auth.PoGoClientContext;
+import fiskie.gonav.auth.ToSAccepter;
 import okhttp3.OkHttpClient;
 
 public class SetupPTCActivity extends AppCompatActivity {
@@ -60,7 +63,16 @@ public class SetupPTCActivity extends AppCompatActivity {
                 try {
                     PTCCredentialsPair pair = ptcCredentialsPairs[0];
                     PtcCredentialProvider provider = new PtcCredentialProvider(client, pair.getUsername(), pair.getPassword());
-                    new CredentialValidator(provider).test();
+                    PokemonGo pokemonGo = new PokemonGo(provider, client);
+
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            progressDialog.setMessage("Auto-accepting ToS...");
+                        }
+                    });
+
+                    new ToSAccepter(pokemonGo).accept();
                 } catch (final RemoteServerException | LoginFailedException e) {
                     e.printStackTrace();
 
