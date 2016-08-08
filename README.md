@@ -18,13 +18,12 @@ By watching your nearby area, gonav keeps you updated with live compass/distance
 
 ## Get the APK
 
-F-Droid link goes here.
+Check the [Releases](https://github.com/Fiskie/gonav/releases) page and download an APK.
  
 ## Known issues
 
 * Unidentified crash while switching networks (?) Can't reproduce; app sometimes crashes when I'm not trying to debug it.
 * Authentication with PTC always fails the first time around. Why?
-* Could we get this working on KitKat? Something worth investigating.
 
 ## Contributing
  
@@ -34,6 +33,7 @@ Pull requests, etc. Please do not directly submit feature PRs; we want to avoid 
 
 * Android Wear support -- anyone got a Smartwatch?
 * There are no unit tests. I wanted to set up some instrumental test cases first thing, but I couldn't figure out how to get it working. If someone can figure that out so we can keep this automatically tested to a degree, that would be nice.
+* Could we get this working on KitKat? Something worth investigating.
 
 ## License
 
