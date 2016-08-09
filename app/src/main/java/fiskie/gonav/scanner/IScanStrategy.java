@@ -1,4 +1,4 @@
-package fiskie.gonav.scanner.strategies;
+package fiskie.gonav.scanner;
 
 import com.pokegoapi.exceptions.LoginFailedException;
 import com.pokegoapi.exceptions.RemoteServerException;

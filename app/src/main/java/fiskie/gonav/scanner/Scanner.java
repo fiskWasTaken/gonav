@@ -12,18 +12,14 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-import fiskie.gonav.scanner.strategies.IScanStrategy;
-import fiskie.gonav.scanner.strategies.WideStrategy;
-
 public class Scanner {
     private LocationProvider locationProvider;
     private IScanStrategy strategy;
     private Map<Long, Encounter> encounters;
 
     public Scanner(PokemonGo pogo, LocationProvider locationProvider) {
-        PokemonGo pogo1 = pogo;
         this.locationProvider = locationProvider;
-        this.strategy = new WideStrategy(locationProvider, pogo);
+        this.strategy = new ScanStrategy(locationProvider, pogo);
         encounters = new HashMap<>();
     }
 

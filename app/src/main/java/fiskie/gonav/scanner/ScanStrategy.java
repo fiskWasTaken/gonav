@@ -1,9 +1,11 @@
-package fiskie.gonav.scanner.strategies;
+package fiskie.gonav.scanner;
 
 import android.location.Location;
 import android.util.Log;
 
 import com.pokegoapi.api.PokemonGo;
+import com.pokegoapi.api.map.Map;
+import com.pokegoapi.api.map.fort.Pokestop;
 import com.pokegoapi.api.map.pokemon.CatchablePokemon;
 import com.pokegoapi.exceptions.AsyncPokemonGoException;
 import com.pokegoapi.exceptions.LoginFailedException;
@@ -12,23 +14,15 @@ import com.pokegoapi.exceptions.RemoteServerException;
 import java.util.ArrayList;
 import java.util.List;
 
-import fiskie.gonav.scanner.Coordinates;
-import fiskie.gonav.scanner.CoordinatesComparison;
-import fiskie.gonav.scanner.Encounter;
-import fiskie.gonav.scanner.EncounterCallback;
-import fiskie.gonav.scanner.LocationProvider;
-import fiskie.gonav.scanner.SpiralGenerator;
+import POGOProtos.Enums.PokemonIdOuterClass;
+import POGOProtos.Map.Fort.FortLureInfoOuterClass;
 
-/**
- * WideStrategy scans a 5x5 grid around the player, in a spiral pattern beginning from the middle.
- */
-public class WideStrategy implements IScanStrategy {
-
+public class ScanStrategy implements IScanStrategy {
     private LocationProvider locationProvider;
     private PokemonGo pokemonGo;
     Location previousLocation;
 
-    public WideStrategy(LocationProvider locationProvider, PokemonGo pokemonGo) {
+    public ScanStrategy(LocationProvider locationProvider, PokemonGo pokemonGo) {
         this.locationProvider = locationProvider;
         this.pokemonGo = pokemonGo;
     }
@@ -123,5 +117,31 @@ public class WideStrategy implements IScanStrategy {
         } catch (AsyncPokemonGoException ignored) {
             // Can occur if scanner is stopped during a scan
         }
+    }
+
+    private void scanPokestops(EncounterCallback callback, double latitude, double longitude) throws LoginFailedException, RemoteServerException {
+        pokemonGo.setLatitude(latitude);
+        pokemonGo.setLongitude(longitude);
+
+        Log.d("scanner", String.format("Scanning for Pokéstops (%f, %f)", pokemonGo.getLatitude(), pokemonGo.getLongitude()));
+
+        try {
+            for (Pokestop pokestop : pokemonGo.getMap().getMapObjects().getPokestops()) {
+                if (pokestop.hasLure()) {
+                    FortLureInfoOuterClass.FortLureInfo lureInfo = pokestop.getFortData().getLureInfo();
+                    PokemonIdOuterClass.PokemonId pokemonId = lureInfo.getActivePokemonId();
+
+                    PokeStopEncounter encounter = new PokeStopEncounter();
+                    encounter.setId(pokemonId.getNumber());
+                    encounter.setLongitude(pokestop.getLongitude());
+                    encounter.setLatitude(pokestop.getLatitude());
+                    encounter.setExpirationTimestamp(pokestop.getCooldownCompleteTimestampMs());
+                    encounter.setUid(lureInfo.getEncounterId());
+                    encounter.setPokestopName(pokestop.getDetails().getName());
+
+                    callback.onEncounterReceived(encounter);
+                }
+            }
+        } catch (AsyncPokemonGoException ignored) {}
     }
 }

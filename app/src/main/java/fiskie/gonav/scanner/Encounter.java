@@ -8,12 +8,12 @@ import java.io.Serializable;
  * Encounter appropriates relevant data from a CatchablePokemon
  * instance so it can be serialized and used in an Intent
  */
-public class Encounter implements Serializable {
-    private long uid;
-    private int id;
-    private double latitude;
-    private double longitude;
-    private long expirationTimestamp;
+public class Encounter implements Serializable, IEncounter {
+    protected long uid;
+    protected int id;
+    protected double latitude;
+    protected double longitude;
+    protected long expirationTimestamp;
 
     public Encounter(CatchablePokemon catchablePokemon) {
         this.uid = catchablePokemon.getEncounterId();
@@ -60,6 +60,11 @@ public class Encounter implements Serializable {
 
     public long getExpirationTimestamp() {
         return expirationTimestamp;
+    }
+
+    @Override
+    public String getSourceString() {
+        return null;
     }
 
     public void setExpirationTimestamp(long expirationTimestamp) {
