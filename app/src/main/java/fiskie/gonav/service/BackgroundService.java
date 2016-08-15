@@ -83,7 +83,7 @@ public class BackgroundService extends IntentService {
     }
 
     public LocationProvider getLocationProvider() {
-        return new LocationProvider((LocationManager) getSystemService(Context.LOCATION_SERVICE), settings.getPreferredProvider());
+        return LocationProvider.getInstance((LocationManager) getSystemService(Context.LOCATION_SERVICE), settings.getPreferredProvider());
     }
 
     private void startScanning() {
@@ -92,6 +92,7 @@ public class BackgroundService extends IntentService {
 
         // Dealing with Android <24 where illegal thread states seem to be a thing
         try {
+            scanThread.interrupt();
             scanThread.start();
         } catch (IllegalThreadStateException e) {
             scanThread = new ScanThread();
@@ -109,7 +110,6 @@ public class BackgroundService extends IntentService {
         }
 
         Log.i("gonavd", "Received intent " + intent.toString());
-
         ECommand command = (ECommand) intent.getSerializableExtra("command");
 
         if (command == ECommand.BROADCAST_CURRENT_ENCOUNTERS) {
@@ -228,7 +228,6 @@ public class BackgroundService extends IntentService {
                     Log.d("gonavd", "Scan thread is sleeping.");
                     Thread.sleep(30000);
                 } catch (InterruptedException e) {
-                    Log.i("gonavd", "Scan thread has been killed.");
                     break;
                 }
             }

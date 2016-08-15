@@ -96,7 +96,7 @@ public class MainActivity extends AppCompatActivity {
 
         AppSettings settings = new AppSettings(getSharedPreferences("gonav", MODE_PRIVATE), getAssets());
         pokedex = settings.getPokedex();
-        locationProvider = new LocationProvider((LocationManager) getSystemService(Context.LOCATION_SERVICE), settings.getPreferredProvider());
+        locationProvider = LocationProvider.getInstance((LocationManager) getSystemService(Context.LOCATION_SERVICE), settings.getPreferredProvider());
         encounterList = new ArrayList<>();
 
         if (settings.getGoogleRefreshToken() == null && settings.getPTCCredentialsPair() == null)
@@ -154,6 +154,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void run() {
                 if (encounterList.size() > 0) {
+                    Log.d("memoryleakdebugging", "Main activity requesting location update");
                     locationProvider.requestLocationUpdate();
                     Collections.sort(encounterList, new EncounterSort(locationProvider));
                 }

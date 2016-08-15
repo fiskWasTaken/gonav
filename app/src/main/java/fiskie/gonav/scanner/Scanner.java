@@ -61,6 +61,7 @@ public class Scanner {
         this.trim();
 
         try {
+            Log.d("memoryleakdebugging", "Scanner requesting location update");
             locationProvider.requestLocationUpdate();
             strategy.doScan(new EncounterCallback() {
                 @Override

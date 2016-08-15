@@ -60,9 +60,8 @@ class EncounterNotificationManager {
     }
 
     public void start() {
-        Log.i("gonavd-notifications", "Notification thread started.");
-
         try {
+            thread.interrupt();
             thread.start();
         } catch (IllegalThreadStateException e) {
             thread = new ScanThread();
@@ -71,7 +70,6 @@ class EncounterNotificationManager {
     }
 
     public void stop() {
-        Log.i("gonavd-notifications", "Notification thread stopped.");
         thread.interrupt();
     }
 
@@ -142,8 +140,10 @@ class EncounterNotificationManager {
     public class EncounterNotification {
         private Encounter encounter;
         private NotificationCompat.Builder builder;
+        private long timestamp;
 
         public EncounterNotification(Encounter encounter) {
+            this.timestamp = System.currentTimeMillis();
             this.encounter = encounter;
 
             IntentService service = getService();
@@ -169,6 +169,7 @@ class EncounterNotificationManager {
                     .setPriority(Notification.PRIORITY_HIGH)
                     .setDefaults(Notification.DEFAULT_VIBRATE)
                     .setOnlyAlertOnce(true)
+                    .setWhen(timestamp)
                     .setDeleteIntent(deletePendingIntent)
                     .setContentIntent(resultPendingIntent);
 
@@ -185,7 +186,8 @@ class EncounterNotificationManager {
 
         public void updateBuilder() {
             builder.setContentTitle(getTitle())
-                    .setContentText(getText());
+                    .setContentText(getText())
+                    .setWhen(timestamp);
         }
 
         public String getTitle() {
@@ -217,8 +219,8 @@ class EncounterNotificationManager {
                     updateDisplay();
                     Thread.sleep(1000);
                 }
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+            } catch (InterruptedException ignored) {
+                Log.d("gonav-notifications", "Scanner thread interrupted");
             }
         }
     }

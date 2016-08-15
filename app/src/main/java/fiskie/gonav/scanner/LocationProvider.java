@@ -17,24 +17,34 @@ public class LocationProvider {
     private Location lastLocation;
     private String provider;
     private long updateRateNanos;
+    private LocationListener defaultListener;
 
-    public LocationProvider(LocationManager locationManager, String provider) {
+    private static LocationProvider instance;
+
+    public static LocationProvider getInstance(LocationManager manager, String provider) {
+        if (instance == null) {
+            instance = new LocationProvider(manager, provider);
+        }
+
+        instance.provider = provider;
+        return instance;
+    }
+
+    public String getProvider() {
+        return provider;
+    }
+
+    public void setProvider(String provider) {
+        this.provider = provider;
+    }
+
+    private LocationProvider(LocationManager locationManager, String provider) {
         this.locationManager = locationManager;
         this.lastLocation = locationManager.getLastKnownLocation(provider);
         this.provider = provider;
         this.updateRateNanos = 3000000000L;
-    }
 
-    public Location getLastLocation() {
-        return lastLocation;
-    }
-
-    public void requestLocationUpdate() {
-        this.requestLocationUpdate(provider);
-    }
-
-    public void requestLocationUpdate(final String provider) {
-        this.performLocationRequest(provider, new LocationListener() {
+        this.defaultListener = new LocationListener() {
             @Override
             public void onLocationChanged(Location location) {
                 Log.d("locationprovider", "Location updated. " + location.toString());
@@ -55,7 +65,11 @@ public class LocationProvider {
             public void onProviderDisabled(String s) {
                 Log.d("locationprovider", "Provider disabled: " + s);
             }
-        });
+        };
+    }
+
+    public Location getLastLocation() {
+        return lastLocation;
     }
 
     public long getUpdateRateNanos() {
@@ -66,7 +80,7 @@ public class LocationProvider {
         this.updateRateNanos = updateRateNanos;
     }
 
-    private void performLocationRequest(final String provider, final LocationListener listener) {
+    public void requestLocationUpdate() {
         long now = SystemClock.elapsedRealtimeNanos();
         Location lastKnownLocation = locationManager.getLastKnownLocation(provider);
 
@@ -89,7 +103,8 @@ public class LocationProvider {
                     // there has to be a better way to do this.
                 }
 
-                locationManager.requestSingleUpdate(provider, listener, Looper.getMainLooper());
+                Log.d("locationprovider", "Requesting location update for " + provider);
+                locationManager.requestSingleUpdate(provider, defaultListener, Looper.getMainLooper());
                 return null;
             }
         }.execute();
