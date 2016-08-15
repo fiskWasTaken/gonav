@@ -66,7 +66,7 @@ public class WideStrategy implements IScanStrategy {
             double lon = location.getLongitude() + circumference * offset[0];
 
             scanAt(callback, lat, lon);
-            int PING_RATE = 9500;
+            int PING_RATE = 9000;
             Thread.sleep(PING_RATE);
         }
     }
