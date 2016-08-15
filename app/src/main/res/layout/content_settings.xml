@@ -98,6 +98,13 @@
                     android:id="@+id/locationProviderPassive" />
             </RadioGroup>
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="Passive mode depends on other applications (e.g. Pokémon GO) to provide location data. This will result in inaccuracies if no applications are requesting a location."
+                android:id="@+id/textView6" />
+
             <!--<TextView-->
                 <!--android:layout_width="wrap_content"-->
                 <!--android:layout_height="wrap_content"-->

@@ -15,6 +15,7 @@ import android.util.Log;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.ConcurrentModificationException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
@@ -83,14 +84,16 @@ class EncounterNotificationManager {
     }
 
     private void updateDisplay() {
-        trim();
+        try {
+            trim();
 
-        if (encounterNotifications.size() > 0) {
-            locationProvider.requestLocationUpdate();
+            if (encounterNotifications.size() > 0) {
+                locationProvider.requestLocationUpdate();
 
-            for (EncounterNotification encounter : encounterNotifications.values())
-                buildNotification(encounter);
-        }
+                for (EncounterNotification encounter : encounterNotifications.values())
+                    buildNotification(encounter);
+            }
+        } catch (ConcurrentModificationException ignored) {}
     }
 
     private void trim() {
