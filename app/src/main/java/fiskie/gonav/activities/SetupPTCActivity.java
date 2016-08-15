@@ -19,9 +19,7 @@ import com.pokegoapi.exceptions.RemoteServerException;
 
 import fiskie.gonav.AppSettings;
 import fiskie.gonav.R;
-import fiskie.gonav.auth.CredentialValidator;
 import fiskie.gonav.auth.PTCCredentialsPair;
-import fiskie.gonav.auth.PoGoClientContext;
 import fiskie.gonav.auth.ToSAccepter;
 import okhttp3.OkHttpClient;
 

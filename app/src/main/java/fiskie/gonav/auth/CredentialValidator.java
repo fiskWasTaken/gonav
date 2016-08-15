@@ -6,11 +6,7 @@ import com.pokegoapi.api.PokemonGo;
 import com.pokegoapi.auth.CredentialProvider;
 import com.pokegoapi.exceptions.LoginFailedException;
 import com.pokegoapi.exceptions.RemoteServerException;
-import com.pokegoapi.main.ServerRequest;
 
-import POGOProtos.Enums.TutorialStateOuterClass;
-import POGOProtos.Networking.Requests.Messages.MarkTutorialCompleteMessageOuterClass;
-import POGOProtos.Networking.Requests.RequestTypeOuterClass;
 import okhttp3.OkHttpClient;
 
 public class CredentialValidator {

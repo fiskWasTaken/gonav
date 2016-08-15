@@ -2,8 +2,8 @@ package fiskie.gonav.service;
 
 public enum EServiceState {
     CONNECTING("Scanner is waiting to start."),
-    AVAILABLE("Scanner is available."),
-    ACTIVE("Scanner is actively searching."),
+    AVAILABLE("Scanner is ready."),
+    ACTIVE("Scanner is searching in the background."),
     KILLED("Scanner has been killed."),
     UNPREPARED("Scanner has not been started."),
     NO_PROVIDER("Scanner cannot run because there is no authentication provider."),

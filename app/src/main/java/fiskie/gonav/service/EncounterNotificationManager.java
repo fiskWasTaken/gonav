@@ -40,10 +40,6 @@ class EncounterNotificationManager {
     private Thread thread;
     private NotificationRemovedListener removedListener;
 
-    private IntentService getService() {
-        return service;
-    }
-
     public EncounterNotificationManager(IntentService service, LocationProvider locationProvider, Pokedex pokedex, PokemonFilters filters) {
         this.encounterNotifications = new HashMap<>();
         this.locationProvider = locationProvider;
@@ -57,6 +53,10 @@ class EncounterNotificationManager {
         thread = new ScanThread();
 
         service.registerReceiver(new NotificationRemovedListener(), new IntentFilter(NOTIFICATION_DELETED_ACTION));
+    }
+
+    private IntentService getService() {
+        return service;
     }
 
     public void start() {
@@ -185,7 +185,7 @@ class EncounterNotificationManager {
 
         public void updateBuilder() {
             builder.setContentTitle(getTitle())
-                .setContentText(getText());
+                    .setContentText(getText());
         }
 
         public String getTitle() {

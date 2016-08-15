@@ -85,8 +85,8 @@ public class FiltersActivity extends AppCompatActivity {
     }
 
     @Override
-    public void onPause() {
-        super.onPause();
+    public void onStop() {
+        super.onStop();
         settings.setPokemonFilters(filters);
         Toast.makeText(this, "Alert changes will take effect when scanning is restarted.", Toast.LENGTH_SHORT).show();
     }

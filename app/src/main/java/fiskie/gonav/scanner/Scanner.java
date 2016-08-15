@@ -27,6 +27,14 @@ public class Scanner {
         encounters = new HashMap<>();
     }
 
+    public LocationProvider getLocationProvider() {
+        return locationProvider;
+    }
+
+    public void setLocationProvider(LocationProvider locationProvider) {
+        this.locationProvider = locationProvider;
+    }
+
     public List<Encounter> getEncounters() {
         this.trim();
         return new ArrayList<>(encounters.values());

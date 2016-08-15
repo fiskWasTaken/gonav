@@ -2,6 +2,7 @@ package fiskie.gonav;
 
 import android.content.SharedPreferences;
 import android.content.res.AssetManager;
+import android.location.LocationManager;
 import android.util.Log;
 
 import com.squareup.moshi.JsonAdapter;
@@ -92,6 +93,16 @@ public class AppSettings {
                 .remove("ptc_username")
                 .remove("ptc_password")
                 .remove("refresh_token")
+                .apply();
+    }
+
+    public String getPreferredProvider() {
+        return this.preferences.getString("provider", LocationManager.GPS_PROVIDER);
+    }
+
+    public void setPreferredProvider(String provider) {
+        this.preferences.edit()
+                .putString("provider", provider)
                 .apply();
     }
 }

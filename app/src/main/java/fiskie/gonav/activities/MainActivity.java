@@ -91,11 +91,12 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         try {
             requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.INTERNET}, 1337);
-        } catch (NoSuchMethodError ignored) {}
+        } catch (NoSuchMethodError ignored) {
+        }
 
         AppSettings settings = new AppSettings(getSharedPreferences("gonav", MODE_PRIVATE), getAssets());
         pokedex = settings.getPokedex();
-        locationProvider = new LocationProvider((LocationManager) getSystemService(Context.LOCATION_SERVICE));
+        locationProvider = new LocationProvider((LocationManager) getSystemService(Context.LOCATION_SERVICE), settings.getPreferredProvider());
         encounterList = new ArrayList<>();
 
         if (settings.getGoogleRefreshToken() == null && settings.getPTCCredentialsPair() == null)

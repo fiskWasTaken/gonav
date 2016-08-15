@@ -10,22 +10,19 @@ import android.os.SystemClock;
 import android.util.Log;
 
 /**
- * Controls the getting of a location
+ * Controls the retrieval of a location
  */
 public class LocationProvider {
     private LocationManager locationManager;
     private Location lastLocation;
-
     private String provider;
-
-    public LocationProvider(LocationManager locationManager) {
-        this(locationManager, LocationManager.PASSIVE_PROVIDER);
-    }
+    private long updateRateNanos;
 
     public LocationProvider(LocationManager locationManager, String provider) {
         this.locationManager = locationManager;
         this.lastLocation = locationManager.getLastKnownLocation(provider);
         this.provider = provider;
+        this.updateRateNanos = 3000000000L;
     }
 
     public Location getLastLocation() {
@@ -33,11 +30,15 @@ public class LocationProvider {
     }
 
     public void requestLocationUpdate() {
-        this.doRequestLocation(new LocationListener() {
+        this.requestLocationUpdate(provider);
+    }
+
+    public void requestLocationUpdate(final String provider) {
+        this.performLocationRequest(provider, new LocationListener() {
             @Override
             public void onLocationChanged(Location location) {
                 Log.d("locationprovider", "Location updated. " + location.toString());
-                lastLocation = locationManager.getLastKnownLocation(provider);
+                lastLocation = location;
             }
 
             @Override
@@ -58,35 +59,39 @@ public class LocationProvider {
     }
 
     public long getUpdateRateNanos() {
-        return 3000000000L;
+        return updateRateNanos;
     }
 
-    private void doRequestLocation(final LocationListener listener) {
+    public void setUpdateRateNanos(long updateRateNanos) {
+        this.updateRateNanos = updateRateNanos;
+    }
+
+    private void performLocationRequest(final String provider, final LocationListener listener) {
         long now = SystemClock.elapsedRealtimeNanos();
+        Location lastKnownLocation = locationManager.getLastKnownLocation(provider);
+
         long lastUpdate = 0;
 
-        if (lastLocation != null)
-            lastUpdate = lastLocation.getElapsedRealtimeNanos();
+        if (lastKnownLocation != null)
+            lastUpdate = lastKnownLocation.getElapsedRealtimeNanos();
 
-        Log.d("locationprovider", "Now: " + now);
-        Log.d("locationprovider", "Last update: " + lastUpdate);
-
-        if (now > lastUpdate + getUpdateRateNanos()) {
-            Log.d("locationprovider", "Requesting location update");
-
-            new AsyncTask<Void, Void, Void>() {
-                @Override
-                protected Void doInBackground(Void... voids) {
-                    try {
-                        Looper.prepare();
-                    } catch (RuntimeException e) {
-                        // there has to be a better way to do this.
-                    }
-
-                    locationManager.requestSingleUpdate(provider, listener, Looper.getMainLooper());
-                    return null;
-                }
-            }.execute();
+        if (now < lastUpdate + getUpdateRateNanos()) {
+            Log.d("locationprovider", "Not updating, still under the update rate threshold.");
+            return;
         }
+
+        new AsyncTask<Void, Void, Void>() {
+            @Override
+            protected Void doInBackground(Void... voids) {
+                try {
+                    Looper.prepare();
+                } catch (RuntimeException e) {
+                    // there has to be a better way to do this.
+                }
+
+                locationManager.requestSingleUpdate(provider, listener, Looper.getMainLooper());
+                return null;
+            }
+        }.execute();
     }
 }

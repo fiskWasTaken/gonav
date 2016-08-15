@@ -11,11 +11,7 @@ import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 
 import com.pokegoapi.api.PokemonGo;
-import com.pokegoapi.main.ServerRequest;
 
-import POGOProtos.Enums.TutorialStateOuterClass;
-import POGOProtos.Networking.Requests.Messages.MarkTutorialCompleteMessageOuterClass;
-import POGOProtos.Networking.Requests.RequestTypeOuterClass;
 import fiskie.gonav.AppSettings;
 import fiskie.gonav.auth.PoGoClientContext;
 import fiskie.gonav.scanner.Encounter;
@@ -54,9 +50,8 @@ public class BackgroundService extends IntentService {
 
             @Override
             public void onSuccess(PokemonGo pokemonGo) {
-                scanner = new Scanner(pokemonGo, locationProvider);
+                scanner = new Scanner(pokemonGo, getLocationProvider());
                 startScanning();
-                notificationManager.start();
             }
 
             @Override
@@ -81,15 +76,20 @@ public class BackgroundService extends IntentService {
         SharedPreferences preferences = getSharedPreferences("gonav", MODE_PRIVATE);
 
         settings = new AppSettings(preferences, getAssets());
-        locationProvider = new LocationProvider((LocationManager) getSystemService(Context.LOCATION_SERVICE));
         listener = new EncounterListener();
         serviceState = EServiceState.UNPREPARED;
         scanThread = new ScanThread();
+        notificationManager = new EncounterNotificationManager(this, getLocationProvider(), settings.getPokedex(), settings.getPokemonFilters());
+    }
 
-        notificationManager = new EncounterNotificationManager(this, locationProvider, settings.getPokedex(), settings.getPokemonFilters());
+    public LocationProvider getLocationProvider() {
+        return new LocationProvider((LocationManager) getSystemService(Context.LOCATION_SERVICE), settings.getPreferredProvider());
     }
 
     private void startScanning() {
+        notificationManager.start();
+        scanner.setLocationProvider(getLocationProvider());
+
         // Dealing with Android <24 where illegal thread states seem to be a thing
         try {
             scanThread.start();

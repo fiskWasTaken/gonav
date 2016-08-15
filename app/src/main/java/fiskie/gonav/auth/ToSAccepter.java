@@ -12,7 +12,9 @@ import POGOProtos.Networking.Requests.RequestTypeOuterClass;
 public class ToSAccepter {
     private PokemonGo pokemonGo;
 
-    public ToSAccepter(PokemonGo pokemonGo) { this.pokemonGo = pokemonGo; }
+    public ToSAccepter(PokemonGo pokemonGo) {
+        this.pokemonGo = pokemonGo;
+    }
 
     public void accept() throws LoginFailedException, RemoteServerException {
         MarkTutorialCompleteMessageOuterClass.MarkTutorialCompleteMessage.Builder tosBuilder = MarkTutorialCompleteMessageOuterClass
