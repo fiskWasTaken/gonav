@@ -94,19 +94,23 @@ public class LocationProvider {
             return;
         }
 
-        new AsyncTask<Void, Void, Void>() {
-            @Override
-            protected Void doInBackground(Void... voids) {
-                try {
-                    Looper.prepare();
-                } catch (RuntimeException e) {
-                    // there has to be a better way to do this.
-                }
+        try {
+            new AsyncTask<Void, Void, Void>() {
+                @Override
+                protected Void doInBackground(Void... voids) {
+                    try {
+                        Looper.prepare();
+                    } catch (RuntimeException e) {
+                        // there has to be a better way to do this.
+                    }
 
-                Log.d("locationprovider", "Requesting location update for " + provider);
-                locationManager.requestSingleUpdate(provider, defaultListener, Looper.getMainLooper());
-                return null;
-            }
-        }.execute();
+                    Log.d("locationprovider", "Requesting location update for " + provider);
+                    locationManager.requestSingleUpdate(provider, defaultListener, Looper.getMainLooper());
+                    return null;
+                }
+            }.execute();
+        } catch (NullPointerException e) {
+            Log.w("locationprovider", e.getMessage());
+        }
     }
 }
